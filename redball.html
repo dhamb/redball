@@ -11,14 +11,69 @@
 		<script>
 			function sayhello()
 			{
-				alert("Hello intern!")
+				alert("Hello intern!");
 			}
+			
+			function moveleft()
+			{
+				redball.left =  redball.left - 5;
+			}
+			
+			function moveright()
+			{
+				redball.left = redball.left + 5;
+			}
+			
+			function moveup()
+			{
+			    redball.top = redball.top - 5; 
+			}
+			
+			function movedown()
+			{
+				redball.top = redball.top + 5;
+			}
+			
+			function leftdiagonalup()
+			{
+				redball.left = redball.left - 5
+				redball.top = redball.top - 5;
+			}
+			
+			function leftdiagonaldown()
+			{
+				redball.left = redball.left - 5
+				redball.top = redball.top + 5;
+			}
+			
+			function rightdiagonalup()
+			{
+				redball.left = redball.left + 5
+				redball.top = redball.top - 5;
+			}
+			
+			function rightdiagonaldown()
+			{
+				redball.left = redball.left + 5
+				redball.top = redball.top + 5;
+			}
+			
+			
 		</script>
 
         <body>
 		    <img src="redball.jpg" id="redball" width="250px" height ="250px"/>
-			<button onclick="sayhello();">Hello World</button>
+			<button onclick="sayhello();">hello world</button>
 			
+			<button onclick="moveleft();">move left</button>
+			<button onclick="moveright();">move right</button>
+			<button onclick="moveup();">move up</button>
+			<button onclick="movedown();">move down</button>
+			
+			<button onclick="leftdiagonalup();">leftdiagonalup</button>
+			<button onclick="leftdiagonaldown();">leftdiagonaldown</button>
+			<button onclick="rightdiagonalup();">rightdiagonalup</button>
+			<button onclick="rightdiagonaldown();">rightdiagonaldown</button>
         </body>
 
    </head>
