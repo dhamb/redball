@@ -36,46 +36,114 @@
 			
 			function leftdiagonalup()
 			{
-				redball.left = redball.left - 5
+				redball.left = redball.left - 5;
 				redball.top = redball.top - 5;
 			}
 			
 			function leftdiagonaldown()
 			{
-				redball.left = redball.left - 5
+				redball.left = redball.left - 5;
 				redball.top = redball.top + 5;
 			}
 			
 			function rightdiagonalup()
 			{
-				redball.left = redball.left + 5
+				redball.left = redball.left + 5;
 				redball.top = redball.top - 5;
 			}
 			
 			function rightdiagonaldown()
 			{
-				redball.left = redball.left + 5
+				redball.left = redball.left + 5;
 				redball.top = redball.top + 5;
 			}
 			
+			function movesquare()
+			{
+				for(var length = 0; length < count; length++)
+				{
+					moveright();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					movedown();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					moveleft();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					moveup();
+				}
+					
+			}
 			
+			function moverectangle()
+			{
+				for(var length = 0; length < count; length++)
+				{
+					moveright();
+				}
+				
+				for(var length = 0; length < (count/2); length++)
+				{
+					movedown();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					moveleft();
+				}
+				
+				for(var length = 0; length < (count/2); length++)
+				{
+					moveup();
+				}
+					
+			}
+			
+			function movetriangle()
+			   {
+					for(var length = 0; length < count; length++)
+				    {
+						rightdiagonaldown();
+					}
+					
+					for(var length = 0; length < count; length++)
+				    {
+						rightdiagonalup();
+					}
+					
+					for(var length = 0; length < (count + count); length++)
+					{
+						moveleft();
+					}
+			   }
+			
+			
+			var count = 50;
 		</script>
 
         <body>
-		    <img src="redball.jpg" id="redball" width="250px" height ="250px"/>
-			<button onclick="sayhello();">hello world</button>
-			
-			<button onclick="moveleft();">move left</button>
-			<button onclick="moveright();">move right</button>
-			<button onclick="moveup();">move up</button>
-			<button onclick="movedown();">move down</button>
-			
-			<button onclick="leftdiagonalup();">leftdiagonalup</button>
-			<button onclick="leftdiagonaldown();">leftdiagonaldown</button>
-			<button onclick="rightdiagonalup();">rightdiagonalup</button>
-			<button onclick="rightdiagonaldown();">rightdiagonaldown</button>
-        </body>
+		    <button onclick="movetriangle();">move triangle</button> 
+            <button onclick="moverectangle();">move rectangle</button>
+			<button onclick="movesquare();">move square</button></td>
+		    <button onclick="moveleft();">move left</button></td>
+			<button onclick="moveright();">move rightbutton</button></td>
+			<button onclick="moveup();">move up</button></td>
+			<button onclick="movedown();">move down</button></td>
+			<button onclick="leftdiagonalup();">leftdiagonalup</button></td>
+			<button onclick="rightdiagonalup();">rightdiagonalup</button></td>
+			<button onclick="leftdiagonaldown();">leftdiagonaldown </button></td>
+			<button onclick="rightdiagonaldown();">rightdiagonaldown</button></td>
+		  
+			<img src="redball.jpg" id="redball" width="250px" height ="250px"/>
+            </body>
 
    </head>
-</html>
+</html> 
 
