@@ -1,0 +1,244 @@
+<!DOCTYPE>
+<html>
+   <head>
+	    <title>
+             Red Ball Part 3
+        </title>
+		
+		<script src="http://lrn.icstars.org/redball.js">
+		</script>
+		
+		<script>
+			function sayhello()
+			{
+				alert("Hello intern!");
+			}
+			
+			function moveleft()
+			{
+				redball.left =  redball.left - 5;
+			}
+			
+			function moveright()
+			{
+				redball.left = redball.left + 5;
+			}
+			
+			function moveup()
+			{
+			    redball.top = redball.top - 5; 
+			}
+			
+			function movedown()
+			{
+				redball.top = redball.top + 5;
+			}
+			
+			function leftdiagonalup()
+			{
+				redball.left = redball.left - 5;
+				redball.top = redball.top - 5;
+			}
+			
+			function leftdiagonaldown()
+			{
+				redball.left = redball.left - 5;
+				redball.top = redball.top + 5;
+			}
+			
+			function rightdiagonalup()
+			{
+				redball.left = redball.left + 5;
+				redball.top = redball.top - 5;
+			}
+			
+			function rightdiagonaldown()
+			{
+				redball.left = redball.left + 5;
+				redball.top = redball.top + 5;
+			}
+			
+			function movesquare()
+			{
+				for(var length = 0; length < count; length++)
+				{
+					moveright();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					movedown();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					moveleft();
+				}
+			
+				for(var length = 0; length < count; length++)
+				{
+					moveup();
+				}
+					
+			}
+			
+			function moverectangle()
+			{
+				for(var length = 0; length < count; length++)
+				{
+					moveright();
+				}
+				
+				for(var length = 0; length < (count/2); length++)
+				{
+					movedown();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					moveleft();
+				}
+				
+				for(var length = 0; length < (count/2); length++)
+				{
+					moveup();
+				}
+					
+			}
+			
+			function movetriangle()
+			{
+					for(var length = 0; length < count; length++)
+				    {
+						rightdiagonaldown();
+					}
+					
+					for(var length = 0; length < count; length++)
+				    {
+						rightdiagonalup();
+					}
+					
+					for(var length = 0; length < (count + count); length++)
+					{
+						moveleft();
+					}
+			}
+			   
+		    function movediamond()
+			{
+					for(var length = 0; length < count; length++)
+				    {
+						rightdiagonalup();
+					}
+					
+					for(var length = 0; length < count; length++)
+				    {
+						rightdiagonaldown();
+					}
+					
+					for(var length = 0; length < count; length++)
+				    {
+						leftdiagonaldown();
+					}
+					
+					for(var length = 0; length < count; length++)
+					{
+						leftdiagonalup();
+					}
+			}
+			
+			function bounceball()
+			{
+			
+			    var startleft = redball.left = 50;
+				var starttop = redball.top = 150;
+				
+				
+				for(var length = 0; redball.left != 0; length++)
+				{
+					leftdiagonalup();
+				}
+					
+				for(var length = 0; redball.top != 0; length++)
+				{
+					rightdiagonalup();
+				}
+					
+				for(var length = 0; redball.top != 415; length++)
+				{
+					rightdiagonaldown();
+				}
+					
+				for(var length = 0; redball.left != startleft && redball.top != starttop; length++)
+				{
+					rightdiagonalup();
+				}
+			}
+			
+			function moveup10()
+			{
+				for(var i = 0; i < 10; i ++)
+				{
+				 moveup();
+				}
+			}
+			
+			function movex()
+			{
+				for(var length = 0; length < count; length++)
+				{
+					rightdiagonaldown();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					rightdiagonalup();
+				}
+				
+				for(var length = 0; length < (count + count); length++)
+				{
+					leftdiagonaldown();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					rightdiagonalup();
+				}
+				
+				for(var length = 0; length < count; length++)
+				{
+					rightdiagonaldown();
+				}
+				
+				for(var length = 0; length < (count + count); length++)
+				{
+					leftdiagonalup();
+				}
+				
+			}
+			  
+			var count = 25;
+		</script>
+
+        <body>
+		    <button onclick="sayhello();">say hello</button>
+		    <button onclick="moveleft();">move left</button>
+			<button onclick="moveright();">move right</button>
+			<button onclick="moveup();">move up</button>
+			<button onclick="movedown();">move down</button>
+			<button onclick="leftdiagonalup();">leftdiagonalup</button>
+			<button onclick="rightdiagonalup();">rightdiagonalup</button>
+			<button onclick="leftdiagonaldown();">leftdiagonaldown </button>
+			<button onclick="rightdiagonaldown();">rightdiagonaldown</button>
+			<button onclick="movesquare();">move square</button>
+			<button onclick="moverectangle();">move rectangle</button>
+			<button onclick="movetriangle();">move triangle</button> 
+			<button onclick="movediamond();">move diamond</button> 
+			<button onclick="bounceball();">bounce ball</button> 
+			<button onclick="moveup10();">Up 10</button>
+		    <button onclick="movex();">Move X</button>
+			<img src="redball.jpg" id="redball" width="250px" height ="250px"/>
+        </body>
+   </head>
+</html> 
+
