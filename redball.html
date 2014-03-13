@@ -123,23 +123,71 @@
 						moveleft();
 					}
 			   }
+			   
+		  function movediamond()
+			  {
+					for(var length = 0; length < count; length++)
+				    {
+						rightdiagonalup();
+					}
+					
+					for(var length = 0; length < count; length++)
+				    {
+						rightdiagonaldown();
+					}
+					
+					for(var length = 0; length < count; length++)
+				    {
+						leftdiagonaldown();
+					}
+					
+					for(var length = 0; length < count; length++)
+					{
+						leftdiagonalup();
+					}
+			  }
+			  
+			  function moveballbounce()
+			  {
+				for(var length = 0; redball.left != 0px; length++)
+				{
+				      leftdiagonalup();
+				}
+				
+				while(left != 0px && top !=0px)
+				{
+					rightdiagonalup();
+				}
+			  
+			    while(left != 1115px)
+			    {
+					rightdiagonaldown();
+			    }
+				
+				while(top != 415px)
+			    {
+					leftdiagonaldown()
+			    }
+			  }
 			
-			var count = 50;
+			var count = 25;
 		</script>
 
         <body>
 		    <button onclick="sayhello();">say hello</button>
+			<button onclick="moveballbounce();">move ball bounce</button> 
+			<button onclick="movediamond();">move diamond</button> 
 		    <button onclick="movetriangle();">move triangle</button> 
             <button onclick="moverectangle();">move rectangle</button>
-			<button onclick="movesquare();">move square</button></td>
-		    <button onclick="moveleft();">move left</button></td>
-			<button onclick="moveright();">move rightbutton</button></td>
-			<button onclick="moveup();">move up</button></td>
-			<button onclick="movedown();">move down</button></td>
-			<button onclick="leftdiagonalup();">leftdiagonalup</button></td>
-			<button onclick="rightdiagonalup();">rightdiagonalup</button></td>
-			<button onclick="leftdiagonaldown();">leftdiagonaldown </button></td>
-			<button onclick="rightdiagonaldown();">rightdiagonaldown</button></td>
+			<button onclick="movesquare();">move square</button>
+		    <button onclick="moveleft();">move left</button>
+			<button onclick="moveright();">move rightbutton</button>
+			<button onclick="moveup();">move up</button>
+			<button onclick="movedown();">move down</button>
+			<button onclick="leftdiagonalup();">leftdiagonalup</button>
+			<button onclick="rightdiagonalup();">rightdiagonalup</button>
+			<button onclick="leftdiagonaldown();">leftdiagonaldown </button>
+			<button onclick="rightdiagonaldown();">rightdiagonaldown</button>
 		  
 			<img src="redball.jpg" id="redball" width="250px" height ="250px"/>
         </body>

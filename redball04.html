@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<style>
+				.ball
+				{
+					position:absolute;
+					left:200px;
+					height:200px;
+					width:200px;
+				}
+				
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	    <script>
+		
+			function Ball(cssid)
+			{	
+				
+				this.moveright = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("left:" + pos.left);	
+					pos.left = pos.left + 20;
+					$(cssid).offset(pos);
+					console.log("left:" + pos.left);
+				}
+				
+				this.moveleft = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("left:" + pos.left);	
+					pos.left = pos.left - 20;
+					$(cssid).offset(pos);
+					console.log("left:" + pos.left);
+				}
+				
+				this.movedown = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					pos.top = pos.top + 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+				}	
+				
+				this.moveup = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					pos.top = pos.top - 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+				}	
+				
+				this.moveleftupdiag = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);	
+					pos.top = pos.top - 20;
+					pos.left = pos.left - 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);
+				}	
+				
+				this.moverightupdiag = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);	
+					pos.top = pos.top - 20;
+					pos.left = pos.left + 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);
+				}
+				
+				this.moveleftdowndiag = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);	
+					pos.top = pos.top + 20;
+					pos.left = pos.left - 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);
+				}
+				
+				this.moverightdowndiag = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);	
+					pos.top = pos.top + 20;
+					pos.left = pos.left + 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);
+				}
+			}
+			
+			var redball = new Ball("#redball");
+			var greenball = new Ball("#greenball");
+			var blackball = new Ball("#blackball");
+			var orangeball = new Ball("#orangeball");
+			var yellowball = new Ball("#yellowball");
+			var blueball = new Ball("#blueball");
+		</script>
+	</head>
+		<body>
+			<img src="redball.jpg" id= "redball" class="ball"/>
+			<img src="greenball.jpg" id="greenball" class="ball"/>
+			<img src="blackball.jpg" id="blackball" class="ball"/>
+			<img src="orangeball.jpg" id="orangeball" class="ball"/>
+			<img src="yellowball.jpg" id="yellowball" class="ball"/>
+			<img src="blueball.jpg" id="blueball" class="ball"/>
+		</body>
+
+	
+
+</html>
