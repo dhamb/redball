@@ -1,0 +1,79 @@
+COMMENT 
+    define values for wall, ball, movement
+END COMMENT
+
+Define Wall 
+    WallTop is set to size of top of the wall
+    WallTopLeft is set to size of top left corner of the wall
+    WallTopRight is set to size of top right corner of the wall
+    WallBottom is set to size of bottom of the wall
+    WallBottomLeft is set to size of bottom left corner of the wall
+    WallBottomRight is set to size of bottom right corner of the wall
+    WallLeft is set to size of left of the wall
+    WallRight is set to size of right of the wall
+End Define Wall
+
+Define Ball
+    BallTop is set to size of top of the ball
+    BallTopLeft is set to size of top left corner of the ball
+    BallTopRight is set to size of top right corner of the ball
+    BallBottom is set to size of bottom of the ball
+    BallBottomLeft is set to size of bottom left corner of the ball
+    BallBottomRight is set to size of bottom right corner of the ball
+    BallLeft is set to size of left of the ball
+    BallRight is set to size of right of the ball
+End Define Ball
+
+
+
+CheckWallHit
+     IF BallRight Greater Than WallLeft
+          Move Ball Left
+          Hit Set To True
+          Return Hit
+     END IF
+     IF BallBottom Greater Than WallTop
+          Move Ball Up
+          Hit Set To True
+          Return Hit
+     END IF
+     IF BallTop Less Than WallBotttom
+          Move Ball Down
+          Hit Set To True
+          Return Hit
+     END IF
+     IF BallLeft Less Than WallRight
+          Move Ball Right
+          Hit Set To True
+          Return Hit
+     END IF
+     IF BallLeft Less Than WallRight AND BallBottom Greater Than WallTop
+          Move Ball Left Up Diagonal
+          Hit Set To True
+          Return Hit
+     END IF
+     IF BallLeft Less Than WallRight AND BallBottom Greater Than WallBottom 
+          Move Ball Left Down Diagonal
+          Hit Set To True
+          Return Hit
+     END IF
+     IF BallRight Greater Than WallLeft AND BallBottom Greater Than WallTop 
+	  Move Ball Right Up Diagonal
+          Hit Set To True
+          Return Hit
+     END IF
+     IF BallRight Greater Than WallLeft AND BallTop Less Than WallBottom
+	  Move Ball Right Down Diagonal
+          Hit Set To True
+          Return Hit
+     END IF
+     ELSE
+	  Hit Set To False
+          Return Hit
+     END ELSE
+End CheckWallHit
+
+Hit Set To False
+
+    
+    
