@@ -1,0 +1,359 @@
+<html>
+	<head>
+		<style>
+				#wall
+				{
+					position:absolute;
+					background-color:blue;
+					top:300px;
+					left:1013px;
+					width:10px;
+					height:200px;
+				}
+				
+				.ball
+				{
+					height:200px;
+					width:200px;
+				}
+				
+				.arrow
+				{
+					height:50px;
+					width:50px;
+				}
+				
+				#redball
+				{
+					position:relative;
+					top:200px;
+					left:300px;
+				}
+				
+				#greenball
+				{
+					position:relative;
+					top:200px;
+					left:300px;
+				}
+				
+				#blackball
+				{
+					position:relative;
+					top:400px;
+					left:-110px;
+				}
+				
+				#yellowball
+				{
+					position:relative;
+					top:400px;
+					left:-110px;
+				}
+		</style>
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	    <script>
+		
+			function Ball(cssid)
+			{	
+			    this.checkwallhit = function ()
+				{
+				    var hit = false;
+					 
+					var ballpos = $(cssid).offset();
+					var ballwidth = $(cssid).width();
+					var ballheight = $(cssid).height();
+					var ballleft = ballpos.left;
+					var balltop = ballpos.top;
+					var ballright = ballleft + ballwidth;
+					var ballbottom = balltop + ballheight;
+					
+					var wallpos = $("#wall").offset();
+					var wallwidth = $("#wall").width();
+					var wallheight = $("#wall").height();
+					var wallleft = wallpos.left;
+					var walltop = wallpos.top;
+					var wallright = wallleft + wallwidth;
+					var wallbottom = walltop + wallheight;
+					
+					if(ballright > wallleft && 
+					   balltop < wallbottom &&
+					   ballleft < wallright && 
+					   ballbottom > walltop)
+					   {
+							hit = true;
+					   }
+					   
+					 return hit;
+				}
+				
+				this.moveright = function ()
+				{
+				    var isHit = this.checkwallhit();
+					
+					
+						var pos = $(cssid).offset();
+						console.log("left:" + pos.left);	
+						if(isHit == false)
+						{
+							pos.left = pos.left + 20;
+						}
+						else
+						{
+							pos.left = pos.left - 20;
+						}
+						$(cssid).offset(pos);
+						console.log("left:" + pos.left);
+					
+				}
+				
+				this.moveleft = function ()
+				{
+				    var isHit = this.checkwallhit();
+					
+					var pos = $(cssid).offset();
+					console.log("left:" + pos.left);
+							
+					 if(isHit == false)
+					 {	
+						pos.left = pos.left - 20;
+					 }
+					else
+					{
+					   pos.left = pos.left + 20;
+					}
+					
+					$(cssid).offset(pos);
+					console.log("left:" + pos.left);
+				}
+				
+				this.movedown = function ()
+				{
+					var isHit = this.checkwallhit();
+					
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					
+					if(isHit == false)
+					{					
+					pos.top = pos.top + 20;
+					}
+					else
+					{
+					   pos.top = pos.top - 20;
+					}
+					
+					
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+				}	
+				
+				this.moveup = function ()
+				{
+				    var isHit = this.checkwallhit();
+					
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					
+					if(isHit == false)
+					{
+					pos.top = pos.top - 20;
+					}
+					else
+					{
+					   pos.top = pos.top + 20;
+					}
+					
+					
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+				}	
+				
+				this.moveleftupdiag = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);	
+					pos.top = pos.top - 20;
+					pos.left = pos.left - 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);
+				}	
+				
+				this.moverightupdiag = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);	
+					pos.top = pos.top - 20;
+					pos.left = pos.left + 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);
+				}
+				
+				this.moveleftdowndiag = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);	
+					pos.top = pos.top + 20;
+					pos.left = pos.left - 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);
+				}
+				
+				this.moverightdowndiag = function ()
+				{
+					var pos = $(cssid).offset();
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);	
+					pos.top = pos.top + 20;
+					pos.left = pos.left + 20;
+					$(cssid).offset(pos);
+					console.log("top:" + pos.top);
+					console.log("left:" + pos.left);
+				}
+			}
+			
+			var redball = new Ball("#redball");
+			var greenball = new Ball("#greenball");
+			var blackball = new Ball("#blackball");
+			var yellowball = new Ball("#yellowball");
+		</script>
+	</head>
+		<body>
+		    <img src="redball.jpg" id="redball" class="ball"/>
+			<img src="greenball.jpg" id="greenball" class="ball"/>
+			<img src="blackball.jpg" id="blackball" class="ball"/>
+			<img src="yellowball.jpg" id="yellowball" class="ball"/>
+			
+			<div id = "wall"></div>
+			<table align="left" border="1px">
+				<tbody>
+					<tr>
+						<td><img src="upleft.jpg" id="ul" class="arrow"></td>
+						<td><img src="up.jpg" id="u" class="arrow"/></td>
+						<td><img src="upright.jpg" id="ur" class="arrow"/></td>
+					</tr>
+					<tr>
+						<td><img src="left.jpg" id="l" class="arrow"/></td>
+						<td><img src="redball.jpg" class="arrow"/></td>
+						<td><img src="right.jpg" id="r" class="arrow"/></td>
+					</tr>
+					<tr>
+						<td><img src="downleft.jpg" id="dl" class="arrow"/></td>
+						<td><img src="down.jpg" id="d" class="arrow"/></td>
+						<td><img src="downright.jpg" id="dr" class="arrow"/></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<script>
+			$("#ul").click(function(){redball.moveleftupdiag();});
+			$("#u").click(function(){redball.moveup();});
+			$("#ur").click(function(){redball.moverightupdiag();});
+			$("#l").click(function(){redball.moveleft();});
+			$("#r").click(function(){redball.moveright();});
+			$("#dl").click(function(){redball.moveleftdowndiag();});
+			$("#d").click(function(){redball.movedown();});
+			$("#dr").click(function(){redball.moverightdowndiag();});
+			</script>
+			
+			<table align="right" border="1px">
+				<tbody>
+					<tr>
+						<td><img src="upleft.jpg" id="ulg" class="arrow"></td>
+						<td><img src="up.jpg" id="ug" class="arrow"/></td>
+						<td><img src="upright.jpg" id="urg" class="arrow"/></td>
+					</tr>
+					<tr>
+						<td><img src="left.jpg" id="lg" class="arrow"/></td>
+						<td><img src="greenball.jpg" class="arrow"/></td>
+						<td><img src="right.jpg" id="rg" class="arrow"/></td>
+					</tr>
+					<tr>
+						<td><img src="downleft.jpg" id="dlg" class="arrow"/></td>
+						<td><img src="down.jpg" id="dg" class="arrow"/></td>
+						<td><img src="downright.jpg" id="drg" class="arrow"/></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<script>
+			$("#ulg").click(function(){greenball.moveleftupdiag();});
+			$("#ug").click(function(){greenball.moveup();});
+			$("#urg").click(function(){greenball.moverightupdiag();});
+			$("#lg").click(function(){greenball.moveleft();});
+			$("#rg").click(function(){greenball.moveright();});
+			$("#dlg").click(function(){greenball.moveleftdowndiag();});
+			$("#dg").click(function(){greenball.movedown();});
+			$("#drg").click(function(){greenball.moverightdowndiag();});
+			</script>
+			
+			<table align="left" border="1px" style="margin-top:350px;margin-left:4px";>
+				<tbody>
+					<tr>
+						<td><img src="upleft.jpg" id="ulb" class="arrow"></td>
+						<td><img src="up.jpg" id="ub" class="arrow"/></td>
+						<td><img src="upright.jpg" id="urb" class="arrow"/></td>
+					</tr>
+					<tr>
+						<td><img src="left.jpg" id="lb" class="arrow"/></td>
+						<td><img src="blackball.jpg" class="arrow"/></td>
+						<td><img src="right.jpg" id="rb" class="arrow"/></td>
+					</tr>
+					<tr>
+						<td><img src="downleft.jpg" id="dlb" class="arrow"/></td>
+						<td><img src="down.jpg" id="db" class="arrow"/></td>
+						<td><img src="downright.jpg" id="drb" class="arrow"/></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<script>
+			$("#ulb").click(function(){blackball.moveleftupdiag();});
+			$("#ub").click(function(){blackball.moveup();});
+			$("#urb").click(function(){blackball.moverightupdiag();});
+			$("#lb").click(function(){blackball.moveleft();});
+			$("#rb").click(function(){blackball.moveright();});
+			$("#dlb").click(function(){blackball.moveleftdowndiag();});
+			$("#db").click(function(){blackball.movedown();});
+			$("#drb").click(function(){blackball.moverightdowndiag();});
+			</script>
+			
+			<table align="right"  border="1px" style="margin-top:350px; margin-left:500px";>
+				<tbody>
+					<tr>
+						<td><img src="upleft.jpg" id="uly" class="arrow"></td>
+						<td><img src="up.jpg" id="uy" class="arrow"/></td>
+						<td><img src="upright.jpg" id="ury" class="arrow"/></td>
+					</tr>
+					<tr>
+						<td><img src="left.jpg" id="ly" class="arrow"/></td>
+						<td><img src="yellowball.jpg" class="arrow"/></td>
+						<td><img src="right.jpg" id="ry" class="arrow"/></td>
+					</tr>
+					<tr>
+						<td><img src="downleft.jpg" id="dly" class="arrow"/></td>
+						<td><img src="down.jpg" id="dy" class="arrow"/></td>
+						<td><img src="downright.jpg" id="dry" class="arrow"/></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<script>
+			$("#uly").click(function(){yellowball.moveleftupdiag();});
+			$("#uy").click(function(){yellowball.moveup();});
+			$("#ury").click(function(){yellowball.moverightupdiag();});
+			$("#ly").click(function(){yellowball.moveleft();});
+			$("#ry").click(function(){yellowball.moveright();});
+			$("#dly").click(function(){yellowball.moveleftdowndiag();});
+			$("#dy").click(function(){yellowball.movedown();});
+			$("#dry").click(function(){yellowball.moverightdowndiag();});
+			</script>
+		</body>
+</html>
