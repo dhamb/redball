@@ -7,7 +7,7 @@
 					background-color:blue;
 					top:300px;
 					left:1013px;
-					width:10px;
+					width:100px;
 					height:200px;
 				}
 				
@@ -172,11 +172,23 @@
 				
 				this.moveleftupdiag = function ()
 				{
+					var isHit = this.checkwallhit();
+
 					var pos = $(cssid).offset();
 					console.log("top:" + pos.top);
 					console.log("left:" + pos.left);	
-					pos.top = pos.top - 20;
-					pos.left = pos.left - 20;
+
+					if(isHit == false)
+					{
+						pos.top = pos.top - 20;
+						pos.left = pos.left - 20;
+				    }
+				    else
+				    {
+				    	pos.top = pos.top + 20;
+						pos.left = pos.left + 20;
+				    }
+				    
 					$(cssid).offset(pos);
 					console.log("top:" + pos.top);
 					console.log("left:" + pos.left);
@@ -184,11 +196,23 @@
 				
 				this.moverightupdiag = function ()
 				{
+					var isHit = this.checkwallhit();
+
 					var pos = $(cssid).offset();
 					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);	
-					pos.top = pos.top - 20;
-					pos.left = pos.left + 20;
+					console.log("left:" + pos.left);
+
+					if(isHit == false)
+					{	
+						pos.top = pos.top - 20;
+						pos.left = pos.left + 20;
+				    }
+				    else
+				    {
+				    	pos.top = pos.top + 20;
+						pos.left = pos.left - 20;
+				    }
+
 					$(cssid).offset(pos);
 					console.log("top:" + pos.top);
 					console.log("left:" + pos.left);
@@ -196,11 +220,23 @@
 				
 				this.moveleftdowndiag = function ()
 				{
+					var isHit = this.checkwallhit();
+
 					var pos = $(cssid).offset();
 					console.log("top:" + pos.top);
 					console.log("left:" + pos.left);	
-					pos.top = pos.top + 20;
-					pos.left = pos.left - 20;
+
+					if(isHit == false)
+					{
+						pos.top = pos.top + 20;
+						pos.left = pos.left - 20;
+					}
+					else
+					{
+						pos.top = pos.top - 20;
+						pos.left = pos.left + 20;
+					}
+
 					$(cssid).offset(pos);
 					console.log("top:" + pos.top);
 					console.log("left:" + pos.left);
@@ -208,11 +244,23 @@
 				
 				this.moverightdowndiag = function ()
 				{
+					var isHit = this.checkwallhit();
+
 					var pos = $(cssid).offset();
 					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);	
-					pos.top = pos.top + 20;
-					pos.left = pos.left + 20;
+					console.log("left:" + pos.left);
+
+					if(isHit == false)
+					{
+						pos.top = pos.top + 20;
+						pos.left = pos.left + 20;
+				    }
+				    else
+				    {
+				    	pos.top = pos.top - 20;
+						pos.left = pos.left - 20;
+				    }
+				    
 					$(cssid).offset(pos);
 					console.log("top:" + pos.top);
 					console.log("left:" + pos.left);
