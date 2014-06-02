@@ -12,53 +12,90 @@
 				{
 					position:absolute;
 					background-color:blue;
-					top:300px;
-					left:900px;
+					top:240px;
+					left:860px;
 					width:100px;
 					height:200px;
 				}
 				
 				.ball
 				{
-					height:200px;
-					width:200px;
+					height:150px;
+					width:150px;
+					border: 1px black solid;
 				}
 				
 				.arrow
 				{
 					height:50px;
 					width:50px;
+					border: 1px black solid;
+				}
+
+				#red_controller
+				{
+					position:absolute;
+					top:0px;
+					left:0px;
+				}
+
+				#green_controller
+				{
+					position:absolute;
+					top:0px;
+					left:1100px;
+				}
+
+				#black_controller
+				{
+					position:absolute;
+					top:500px;
+					left:0px;
+				}
+
+				#yellow_controller
+				{
+					position:absolute;
+					top:500px;
+					left:1100px;
+				}
+
+				.controller
+				{
+					height:165px;
+					width:165px;
 				}
 				
 				#redball
 				{
 					position:relative;
-					top:150px;
-					left:260px;
+					top:185px;
+					left:380px;
 				}
 				
 				#greenball
 				{
 					position:relative;
-					top:150px;
-					left:260px;
+					top:185px;
+					left:380px;
 				}
 				
 				#blackball
 				{
 					position:relative;
-					top:380px;
-					left:-150px;
+					top:345px;
+					left:68px;
 				}
 				
 				#yellowball
 				{
 					position:relative;
-					top:380px;
-					left:-150px;
+					top:345px;
+					left:68px;
 				}
 		</style>
-		
+	</head>
+	<body>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	    <script>
 		
@@ -68,26 +105,14 @@
 				{
 				    var hit = false;
 					 
-					var ballpos = $(cssid).offset();
-					var ballwidth = $(cssid).width();
-					var ballheight = $(cssid).height();
-					var ballleft = ballpos.left;
-					var balltop = ballpos.top;
-					var ballright = ballleft + ballwidth;
-					var ballbottom = balltop + ballheight;
+				
+					var ball = setsides($(cssid));
+    				var wall = setsides($("#wall"));
 					
-					var wallpos = $("#wall").offset();
-					var wallwidth = $("#wall").width();
-					var wallheight = $("#wall").height();
-					var wallleft = wallpos.left;
-					var walltop = wallpos.top;
-					var wallright = wallleft + wallwidth;
-					var wallbottom = walltop + wallheight;
-					
-					if(ballright + moveConstant > wallleft && 
-					   balltop - moveConstant < wallbottom &&
-					   ballleft - moveConstant < wallright && 
-					   ballbottom + moveConstant > walltop)
+					if(ball.right + moveConstant > wall.left && 
+					   ball.top - moveConstant < wall.bottom &&
+					   ball.left - moveConstant < wall.right && 
+					   ball.bottom + moveConstant > wall.top)
 					   {
 							hit = true;
 							score += this.getHVal();
@@ -291,6 +316,22 @@
 				}
 				
 			}
+
+			//Sets the sides for an image Object 
+			function setsides(imgObject)
+			{
+    			var imageObject = {};
+   				imageObject = imgObject;
+    			imageObject.pos=imgObject.offset();
+    			imageObject.width=imgObject.width();
+    			imageObject.height=imgObject.height();
+    			imageObject.left=imageObject.pos.left;
+    			imageObject.top=imageObject.pos.top;
+   				imageObject.right=imageObject.left+imageObject.width;
+    			imageObject.bottom=imageObject.top+imageObject.height;
+
+    			return (imageObject);
+			}
 			
 			var redball = new Ball("#redball");
 			redball.healthValue(20);
@@ -309,8 +350,8 @@
 			
 			var moveConstant = 20;
 		</script>
-	</head>
-		<body>
+	
+		
 		    <img src="redball.jpg" id="redball" class="ball"/>
 			<img src="greenball.jpg" id="greenball" class="ball"/>
 			<img src="blackball.jpg" id="blackball" class="ball"/>
@@ -318,25 +359,19 @@
 			
 			<div id = "score">score: 0</div>
 			<div id = "wall"></div>
-			<table align="left" border="1px">
-				<tbody>
-					<tr>
-						<td><img src="upleft.jpg" id="ul" class="arrow"></td>
-						<td><img src="up.jpg" id="u" class="arrow"/></td>
-						<td><img src="upright.jpg" id="ur" class="arrow"/></td>
-					</tr>
-					<tr>
-						<td><img src="left.jpg" id="l" class="arrow"/></td>
-						<td><img src="redball.jpg" class="arrow"/></td>
-						<td><img src="right.jpg" id="r" class="arrow"/></td>
-					</tr>
-					<tr>
-						<td><img src="downleft.jpg" id="dl" class="arrow"/></td>
-						<td><img src="down.jpg" id="d" class="arrow"/></td>
-						<td><img src="downright.jpg" id="dr" class="arrow"/></td>
-					</tr>
-				</tbody>
-			</table>
+			
+
+			<div id= "red_controller" class= "controller" border="1px">
+				<img src="upleft.jpg" id="ul" class="arrow">
+				<img src="up.jpg" id="u" class="arrow"/>
+				<img src="upright.jpg" id="ur" class="arrow"/>
+				<img src="left.jpg" id="l" class="arrow"/>
+				<img src="redball.jpg" class="arrow"/>
+				<img src="right.jpg" id="r" class="arrow"/>
+				<img src="downleft.jpg" id="dl" class="arrow"/>
+				<img src="down.jpg" id="d" class="arrow"/>
+				<img src="downright.jpg" id="dr" class="arrow"/>
+			</div>
 			
 			<script>
 			$("#ul").click(function(){redball.moveleftupdiag();});
@@ -348,26 +383,18 @@
 			$("#d").click(function(){redball.movedown();});
 			$("#dr").click(function(){redball.moverightdowndiag();});
 			</script>
-			
-			<table align="right" border="1px">
-				<tbody>
-					<tr>
-						<td><img src="upleft.jpg" id="ulg" class="arrow"></td>
-						<td><img src="up.jpg" id="ug" class="arrow"/></td>
-						<td><img src="upright.jpg" id="urg" class="arrow"/></td>
-					</tr>
-					<tr>
-						<td><img src="left.jpg" id="lg" class="arrow"/></td>
-						<td><img src="greenball.jpg" class="arrow"/></td>
-						<td><img src="right.jpg" id="rg" class="arrow"/></td>
-					</tr>
-					<tr>
-						<td><img src="downleft.jpg" id="dlg" class="arrow"/></td>
-						<td><img src="down.jpg" id="dg" class="arrow"/></td>
-						<td><img src="downright.jpg" id="drg" class="arrow"/></td>
-					</tr>
-				</tbody>
-			</table>
+
+			<div id= "green_controller" class= "controller">
+				<img src="upleft.jpg" id="ulg" class="arrow">
+				<img src="up.jpg" id="ug" class="arrow"/>
+				<img src="upright.jpg" id="urg" class="arrow"/>
+				<img src="left.jpg" id="lg" class="arrow"/>
+				<img src="greenball.jpg" class="arrow"/>
+				<img src="right.jpg" id="rg" class="arrow"/>
+				<img src="downleft.jpg" id="dlg" class="arrow"/>
+				<img src="down.jpg" id="dg" class="arrow"/>
+				<img src="downright.jpg" id="drg" class="arrow"/>	
+			</div>
 			
 			<script>
 			$("#ulg").click(function(){greenball.moveleftupdiag();});
@@ -380,25 +407,17 @@
 			$("#drg").click(function(){greenball.moverightdowndiag();});
 			</script>
 			
-			<table align="left" border="1px" style="margin-top:285px;margin-left:4px";>
-				<tbody>
-					<tr>
-						<td><img src="upleft.jpg" id="ulb" class="arrow"></td>
-						<td><img src="up.jpg" id="ub" class="arrow"/></td>
-						<td><img src="upright.jpg" id="urb" class="arrow"/></td>
-					</tr>
-					<tr>
-						<td><img src="left.jpg" id="lb" class="arrow"/></td>
-						<td><img src="blackball.jpg" class="arrow"/></td>
-						<td><img src="right.jpg" id="rb" class="arrow"/></td>
-					</tr>
-					<tr>
-						<td><img src="downleft.jpg" id="dlb" class="arrow"/></td>
-						<td><img src="down.jpg" id="db" class="arrow"/></td>
-						<td><img src="downright.jpg" id="drb" class="arrow"/></td>
-					</tr>
-				</tbody>
-			</table>
+			<div id= "black_controller" class= "controller">
+				<img src="upleft.jpg" id="ulb" class="arrow">
+				<img src="up.jpg" id="ub" class="arrow"/>
+				<img src="upright.jpg" id="urb" class="arrow"/>
+				<img src="left.jpg" id="lb" class="arrow"/>
+				<img src="blackball.jpg" class="arrow"/>
+				<img src="right.jpg" id="rb" class="arrow"/>
+				<img src="downleft.jpg" id="dlb" class="arrow"/>
+				<img src="down.jpg" id="db" class="arrow"/>
+				<img src="downright.jpg" id="drb" class="arrow"/>
+			</div>
 			
 			<script>
 			$("#ulb").click(function(){blackball.moveleftupdiag();});
@@ -411,25 +430,17 @@
 			$("#drb").click(function(){blackball.moverightdowndiag();});
 			</script>
 			
-			<table align="right"  border="1px" style="margin-top:285px; margin-left:500px";>
-				<tbody>
-					<tr>
-						<td><img src="upleft.jpg" id="uly" class="arrow"></td>
-						<td><img src="up.jpg" id="uy" class="arrow"/></td>
-						<td><img src="upright.jpg" id="ury" class="arrow"/></td>
-					</tr>
-					<tr>
-						<td><img src="left.jpg" id="ly" class="arrow"/></td>
-						<td><img src="yellowball.jpg" class="arrow"/></td>
-						<td><img src="right.jpg" id="ry" class="arrow"/></td>
-					</tr>
-					<tr>
-						<td><img src="downleft.jpg" id="dly" class="arrow"/></td>
-						<td><img src="down.jpg" id="dy" class="arrow"/></td>
-						<td><img src="downright.jpg" id="dry" class="arrow"/></td>
-					</tr>
-				</tbody>
-			</table>
+			<div id= "yellow_controller" class= "controller">
+				<img src="upleft.jpg" id="uly" class="arrow">
+				<img src="up.jpg" id="uy" class="arrow"/>
+				<img src="upright.jpg" id="ury" class="arrow"/>
+				<img src="left.jpg" id="ly" class="arrow"/>
+				<img src="yellowball.jpg" class="arrow"/>
+				<img src="right.jpg" id="ry" class="arrow"/>
+				<img src="downleft.jpg" id="dly" class="arrow"/>
+				<img src="down.jpg" id="dy" class="arrow"/>
+				<img src="downright.jpg" id="dry" class="arrow"/>	
+			</div>
 			
 			<script>
 			$("#uly").click(function(){yellowball.moveleftupdiag();});
