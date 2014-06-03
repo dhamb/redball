@@ -4,58 +4,59 @@
 	    <title>
              Red Ball Part 3
         </title>
-		
-		<script src="http://lrn.icstars.org/redball.js">
-		</script>
+	</head>	
+
+	<body>
+		<script src="http://lrn.icstars.org/redball.js"></script>
 		
 		<script>
 			function sayhello()
 			{
-				alert("Hello intern!");
+				alert("Hello!");
 			}
 			
 			function moveleft()
 			{
-				redball.left =  redball.left - 5;
+				redball.left =  redball.left - MOVE_DISTANCE_CONSTANT; 
 			}
 			
 			function moveright()
 			{
-				redball.left = redball.left + 5;
+				redball.left = redball.left + MOVE_DISTANCE_CONSTANT; 
 			}
 			
 			function moveup()
 			{
-			    redball.top = redball.top - 5; 
+			    redball.top = redball.top - MOVE_DISTANCE_CONSTANT;  
 			}
 			
 			function movedown()
 			{
-				redball.top = redball.top + 5;
+				redball.top = redball.top + MOVE_DISTANCE_CONSTANT; 
 			}
 			
 			function leftdiagonalup()
 			{
-				redball.left = redball.left - 5;
-				redball.top = redball.top - 5;
+				redball.left = redball.left - MOVE_DISTANCE_CONSTANT; 
+				redball.top = redball.top - MOVE_DISTANCE_CONSTANT; 
 			}
 			
 			function leftdiagonaldown()
 			{
-				redball.left = redball.left - 5;
-				redball.top = redball.top + 5;
+				redball.left = redball.left - MOVE_DISTANCE_CONSTANT; 
+				redball.top = redball.top + MOVE_DISTANCE_CONSTANT; 
 			}
 			
 			function rightdiagonalup()
 			{
-				redball.left = redball.left + 5;
-				redball.top = redball.top - 5;
+				redball.left = redball.left + MOVE_DISTANCE_CONSTANT; 
+				redball.top = redball.top - MOVE_DISTANCE_CONSTANT; 
 			}
 			
 			function rightdiagonaldown()
 			{
-				redball.left = redball.left + 5;
-				redball.top = redball.top + 5;
+				redball.left = redball.left + MOVE_DISTANCE_CONSTANT; 
+				redball.top = redball.top + MOVE_DISTANCE_CONSTANT; 
 			}
 			
 			function movesquare()
@@ -218,27 +219,27 @@
 			}
 			  
 			var count = 25;
+			var MOVE_DISTANCE_CONSTANT = 5;
 		</script>
 
-        <body>
-		    <button onclick="sayhello();">say hello</button>
-		    <button onclick="moveleft();">move left</button>
-			<button onclick="moveright();">move right</button>
-			<button onclick="moveup();">move up</button>
-			<button onclick="movedown();">move down</button>
 			<button onclick="leftdiagonalup();">leftdiagonalup</button>
+			<button onclick="moveup();">move up</button>
 			<button onclick="rightdiagonalup();">rightdiagonalup</button>
+			<button onclick="moveleft();">move left</button>
+			<button onclick="sayhello();">say hello</button>
+			<button onclick="moveright();">move right</button>
 			<button onclick="leftdiagonaldown();">leftdiagonaldown </button>
+			<button onclick="movedown();">move down</button>
 			<button onclick="rightdiagonaldown();">rightdiagonaldown</button>
 			<button onclick="movesquare();">move square</button>
 			<button onclick="moverectangle();">move rectangle</button>
-			<button onclick="movetriangle();">move triangle</button> 
+			<button onclick="movetriangle();">move triangle</button>
 			<button onclick="movediamond();">move diamond</button> 
 			<button onclick="bounceball();">bounce ball</button> 
 			<button onclick="moveup10();">Up 10</button>
 		    <button onclick="movex();">Move X</button>
-			<img src="redball.jpg" id="redball" width="250px" height ="250px"/>
-        </body>
-   </head>
+		 
+		<img src="redball.jpg" id="redball" width="250px" height ="250px"/>
+    </body>
 </html> 
 

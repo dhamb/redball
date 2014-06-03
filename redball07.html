@@ -3,96 +3,80 @@
 		<style>
 		        #score
 				{
-					position:absolute;
-					top:20px;
-					left:600px;
+					position:fixed;
+					top:5%;
+					left:40%;
 				}
 				
 				#wall
 				{
-					position:absolute;
+					position:fixed;
 					background-color:blue;
-					top:240px;
-					left:860px;
-					width:100px;
-					height:200px;
+					top:40%;
+					left:60%;
+					width:5%;
+					height:25%;
 				}
 				
 				.ball
 				{
-					height:150px;
-					width:150px;
+					height:20%;
+					width:10%;
 					border: 1px black solid;
 				}
 				
 				.arrow
 				{
-					height:50px;
-					width:50px;
+					height:25%;
+					width:25%;
 					border: 1px black solid;
 				}
 
 				#red_controller
 				{
-					position:absolute;
-					top:0px;
-					left:0px;
+					top:0%;
+					left:0%;
 				}
 
 				#green_controller
 				{
-					position:absolute;
-					top:0px;
-					left:1100px;
+					top:0%;
+					left:70%;
 				}
 
 				#black_controller
 				{
-					position:absolute;
-					top:500px;
-					left:0px;
+					top:75%;
+					left:0%;
 				}
 
 				#yellow_controller
 				{
-					position:absolute;
-					top:500px;
-					left:1100px;
+					top:75%;
+					left:70%;
 				}
 
 				.controller
 				{
-					height:165px;
-					width:165px;
+					position:fixed;
+					height:30%;
+					width:15%;
 				}
 				
-				#redball
+				#redball, #greenball
 				{
 					position:relative;
-					top:185px;
-					left:380px;
+					top:30%;
+					left:27%;
 				}
 				
-				#greenball
+				#blackball, #yellowball
 				{
 					position:relative;
-					top:185px;
-					left:380px;
+					top:55%;
+					left:6%;
 				}
 				
-				#blackball
-				{
-					position:relative;
-					top:345px;
-					left:68px;
-				}
-				
-				#yellowball
-				{
-					position:relative;
-					top:345px;
-					left:68px;
-				}
 		</style>
 	</head>
 	<body>
@@ -106,13 +90,13 @@
 				    var hit = false;
 					 
 				
-					var ball = setsides($(cssid));
+					ball = setsides($(cssid));
     				var wall = setsides($("#wall"));
 					
-					if(ball.right + moveConstant > wall.left && 
-					   ball.top - moveConstant < wall.bottom &&
-					   ball.left - moveConstant < wall.right && 
-					   ball.bottom + moveConstant > wall.top)
+					if(ball.right + MOVE_DISTANCE_CONSTANT > wall.left && 
+					   ball.top - MOVE_DISTANCE_CONSTANT < wall.bottom &&
+					   ball.left - MOVE_DISTANCE_CONSTANT < wall.right && 
+					   ball.bottom + MOVE_DISTANCE_CONSTANT > wall.top)
 					   {
 							hit = true;
 							score += this.getHVal();
@@ -125,179 +109,140 @@
 				this.moveright = function ()
 				{
 				    var isHit = this.checkwallhit();
-					
-					
-						var pos = $(cssid).offset();
-						console.log("left:" + pos.left);	
+						
 						if(isHit == false)
 						{
-							pos.left = pos.left + moveConstant;
+							ball.left = ball.left + MOVE_DISTANCE_CONSTANT;
 						}
 						else
 						{	
-							pos.left = pos.left - moveConstant;
+							ball.left = ball.left - MOVE_DISTANCE_CONSTANT;
 						}
-						$(cssid).offset(pos);
-						console.log("left:" + pos.left);
+						$(cssid).offset(ball);
 					
 				}
 				
 				this.moveleft = function ()
 				{
 				    var isHit = this.checkwallhit();
-					
-					var pos = $(cssid).offset();
-					console.log("left:" + pos.left);
-							
+						
 					 if(isHit == false)
 					 {	
-						pos.left = pos.left - moveConstant;
+						ball.left = ball.left - MOVE_DISTANCE_CONSTANT;
 					 }
 					else
 					{
-					   pos.left = pos.left + moveConstant;
+					   ball.left = ball.left + MOVE_DISTANCE_CONSTANT;
 					}
 					
-					$(cssid).offset(pos);
-					console.log("left:" + pos.left);
+					$(cssid).offset(ball);
 				}
 				
 				this.movedown = function ()
 				{
 					var isHit = this.checkwallhit();
 					
-					var pos = $(cssid).offset();
-					console.log("top:" + pos.top);
-					
 					if(isHit == false)
 					{					
-					pos.top = pos.top + moveConstant;
+					   ball.top = ball.top + MOVE_DISTANCE_CONSTANT;
 					}
 					else
 					{
-					   pos.top = pos.top - moveConstant;
+					   ball.top = ball.top - MOVE_DISTANCE_CONSTANT;
 					}
 					
-					
-					$(cssid).offset(pos);
-					console.log("top:" + pos.top);
+					$(cssid).offset(ball);
 				}	
 				
 				this.moveup = function ()
 				{
 				    var isHit = this.checkwallhit();
 					
-					var pos = $(cssid).offset();
-					console.log("top:" + pos.top);
-					
 					if(isHit == false)
 					{
-					   pos.top = pos.top - moveConstant;
+					   ball.top = ball.top - MOVE_DISTANCE_CONSTANT;
 					}
 					else
 					{
-					   pos.top = pos.top + moveConstant;
+					   ball.top = ball.top + MOVE_DISTANCE_CONSTANT;
 					}
 					
 					
-					$(cssid).offset(pos);
-					console.log("top:" + pos.top);
+					$(cssid).offset(ball);
 				}	
 				
 				this.moveleftupdiag = function ()
 				{
 					var isHit = this.checkwallhit();
 
-					var pos = $(cssid).offset();
-					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);	
-
 					if(isHit == false)
 					{
-						pos.top = pos.top - moveConstant;
-						pos.left = pos.left - moveConstant;
+						ball.top = ball.top - MOVE_DISTANCE_CONSTANT;
+						ball.left = ball.left - MOVE_DISTANCE_CONSTANT;
 				    }
 				    else
 				    {
-				    	pos.top = pos.top + moveConstant;
-						pos.left = pos.left + moveConstant;
+				    	ball.top = ball.top + MOVE_DISTANCE_CONSTANT;
+						ball.left = ball.left + MOVE_DISTANCE_CONSTANT;
 				    }
 				    
-					$(cssid).offset(pos);
-					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);
+					$(cssid).offset(ball);
 				}	
 				
 				this.moverightupdiag = function ()
 				{
 					var isHit = this.checkwallhit();
 
-					var pos = $(cssid).offset();
-					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);
-
 					if(isHit == false)
 					{	
-						pos.top = pos.top - moveConstant;
-						pos.left = pos.left + moveConstant;
+						ball.top = ball.top - MOVE_DISTANCE_CONSTANT;
+						ball.left = ball.left + MOVE_DISTANCE_CONSTANT;
 				    }
 				    else
 				    {
-				    	pos.top = pos.top + moveConstant;
-						pos.left = pos.left - moveConstant;
+				    	ball.top = ball.top + MOVE_DISTANCE_CONSTANT;
+						ball.left = ball.left - MOVE_DISTANCE_CONSTANT;
 				    }
 
-					$(cssid).offset(pos);
-					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);
+					$(cssid).offset(ball);
+
 				}
 				
 				this.moveleftdowndiag = function ()
 				{
 					var isHit = this.checkwallhit();
 
-					var pos = $(cssid).offset();
-					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);	
-
 					if(isHit == false)
 					{
-						pos.top = pos.top + moveConstant;
-						pos.left = pos.left - moveConstant;
+						ball.top = ball.top + MOVE_DISTANCE_CONSTANT;
+						ball.left = ball.left - MOVE_DISTANCE_CONSTANT;
 					}
 					else
 					{
-						pos.top = pos.top - moveConstant;
-						pos.left = pos.left + moveConstant;
+						ball.top = ball.top - MOVE_DISTANCE_CONSTANT;
+						ball.left = ball.left + MOVE_DISTANCE_CONSTANT;
 					}
 
-					$(cssid).offset(pos);
-					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);
+					$(cssid).offset(ball);
 				}
 				
 				this.moverightdowndiag = function ()
 				{
 					var isHit = this.checkwallhit();
 
-					var pos = $(cssid).offset();
-					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);
-
 					if(isHit == false)
 					{
-						pos.top = pos.top + moveConstant;
-						pos.left = pos.left + moveConstant;
+						ball.top = ball.top + MOVE_DISTANCE_CONSTANT;
+						ball.left = ball.left + MOVE_DISTANCE_CONSTANT;
 				    }
 				    else
 				    {
-				    	pos.top = pos.top - moveConstant;
-						pos.left = pos.left - moveConstant;
+				    	ball.top = ball.top - MOVE_DISTANCE_CONSTANT;
+						ball.left = ball.left - MOVE_DISTANCE_CONSTANT;
 				    }
 				    
-					$(cssid).offset(pos);
-					console.log("top:" + pos.top);
-					console.log("left:" + pos.left);
+					$(cssid).offset(ball);
+				
 				}
 				
 				this.healthValue = function(hVal)
@@ -314,7 +259,7 @@
 				{
 					console.log(this.healthValue);
 				}
-				
+
 			}
 
 			//Sets the sides for an image Object 
@@ -342,13 +287,10 @@
 			var yellowball = new Ball("#yellowball");
 			yellowball.healthValue(-15);
 			
+		
+			var MOVE_DISTANCE_CONSTANT = 20;
 			var score = 0;
-			function showScore()
-			{
-				console.log(score);
-			}
-			
-			var moveConstant = 20;
+			var ball;
 		</script>
 	
 		
@@ -357,8 +299,8 @@
 			<img src="blackball.jpg" id="blackball" class="ball"/>
 			<img src="yellowball.jpg" id="yellowball" class="ball"/>
 			
-			<div id = "score">score: 0</div>
-			<div id = "wall"></div>
+			<div id ="score">score: 0</div>
+			<div id ="wall"></div>
 			
 
 			<div id= "red_controller" class= "controller" border="1px">
